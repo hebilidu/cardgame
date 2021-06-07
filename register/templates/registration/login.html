@@ -1,0 +1,13 @@
+{% extends 'partials/base.html'%}
+
+{% block content  %}
+<div class="main-hogwarts">
+    <h1>Login to Harry Potter Car Game or <a href="{% url 'signup' %}">Sign Up !</a></h1>
+    <form method="POST">
+        {% csrf_token  %}
+        {{  form  }}
+        <br>
+        <button>Login</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{%   extends 'partials/base.html' %}
+{% load static  %}
+
+{% block title %}
+Card Game Home Page
+{% endblock %}
+
+{% block content  %}
+
+<div class="main-logo">
+    <div class="cont">
+        <!-- reminder: stylesheet is in static/css/main.css -->
+        <h1>Harry Potter Card Game  Home Page</h1>
+
+        <div class="menutop">
+            <a href="{% url 'login' %}" class="btn btn-primary my-2">Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-primary my-2">Signup</a>
+            <a href="{% url 'listpost' %}" class="btn btn-primary my-2">Forum</a>
+            <a href="#" class="btn btn-primary my-2">Trade cards</a>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

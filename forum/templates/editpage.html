@@ -1,0 +1,28 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load bootstrap %}
+
+{% block title %}
+{{ action }}
+{% endblock %}
+
+{% block content  %}
+
+<div class="main-hogwarts">
+
+    <h1>FORUM {{ action  }}</h1>
+
+    <div class="cont">
+        <form method="POST" class="containerf col-6" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {{ form|bootstrap }}
+            
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock  %}

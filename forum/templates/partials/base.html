@@ -1,0 +1,42 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    {% bootstrap_css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+
+    {% include 'partials/_navbar.html' %}
+
+    {% bootstrap_messages %}
+    <!-- {% if messages %}
+    <div>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %} -->
+
+    {% block content%}
+    {% endblock %}
+
+    {% bootstrap_javascript %}    
+    {% block js %}
+    {% endblock %}
+    
+</body>
+
+</html>

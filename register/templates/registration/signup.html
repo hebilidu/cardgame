@@ -1,0 +1,30 @@
+{% extends 'partials/base.html'%}
+
+{% block content  %}
+<div class="main-hogwarts">
+  <h2>Sign up to Harry Potter Card Game</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+      <div class="cont-left">
+        {{ field.label_tag }}
+        <div class="cont-row">
+          <span>
+          {{ field }}
+          </span>
+          {% if field.help_text %}
+            <small style="color: lightgray">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+</div>
+{% endblock %}

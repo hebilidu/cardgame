@@ -1,0 +1,43 @@
+{% extends 'partials/base.html' %}
+{% load static  %}
+
+{% block title %}
+{{ action }}
+{% endblock %}
+
+{% block content %}
+
+<div class="main-hogwarts">
+    <h1>FORUM {{ action }} </h1>
+    <div class="cont-left">
+        <p>Title: {{ object.title }}</p>
+        <hr>
+        <p>{{ object.content}}</p>
+        <hr>
+    </div>
+    <div class="cont-but">
+        <button type="button" class="btn btn-secondary btn-sm" disabled>
+            Owner: {{ object.owner }}</button>
+        <button type="button" class="btn btn-secondary btn-sm" disabled>
+            Creation: {{ object.pub_date }}</button>
+        <button type="button" class="btn btn-secondary btn-sm" disabled>
+            Last edit: {{ object.last_edit_date }}</button>
+        <a href="{% url 'editpost' object.id  %}" class="btn btn-success btn-sm">Edit</a>
+        {% if action == 'Delete post' %}
+        <form method="post">{% csrf_token %}
+            <p>Please confirm deletion</p>
+            <input class="btn btn-danger" type="submit" value="Confirm">
+        </form>
+        {% elif user.is_staff %}
+        <a href="{% url 'deletepost' object.id  %}" class="btn btn-danger btn-sm">Delete</a>
+        {% endif %}
+    </div>
+    <div class="comments">
+        {% for c in object.comment.all %}
+        {{ c.title }}
+        {{ c.content }}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

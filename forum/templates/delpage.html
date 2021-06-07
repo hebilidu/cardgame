@@ -1,0 +1,25 @@
+{% extends 'partials/base.html' %}
+{% load static  %}
+
+{% block title %}
+{{ action }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+        {% if action == 'Delete Film' %}
+        <form method="post">{% csrf_token %}
+            <p>Are you sure you want to delete "{{ object.title }}"?</p>
+            <input class="btn btn-danger" type="submit" value="Confirm">
+        </form>
+        {% elif user.is_staff %}
+        <a href="{% url 'deletepost' object.id  %}" class="btn btn-danger btn-sm">Delete</a>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}
