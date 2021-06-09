@@ -33,9 +33,15 @@
         {% endif %}
     </div>
     <div class="comments">
-        {% for c in object.comment.all %}
-        {{ c.title }}
-        {{ c.content }}
+        Comments: <a href="{% url 'addcomment' object.id  %}" class="btn btn-success btn-sm">Add one</a>
+        {% for c in comments %}
+        <div class="box">
+            <a href="{% url 'viewpost' object.id %}">{{ c.title }}</a><br>
+            <span>{{ c.content }}</span><br>
+            <span>
+                by: {{ c.owner }} | published: {{ c.pub_date }} | last edited: {{ c.last_edit_date }}
+            </span>
+        </div>
         {% endfor %}
     </div>
 </div>

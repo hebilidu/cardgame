@@ -1,0 +1,29 @@
+{% extends 'partials/base.html' %}
+{% load static  %}
+
+{% block title %}
+List cards
+{% endblock %}
+
+{% block content %}
+
+<div class="main-hogwarts">
+  <h1>TRADE List of Cards</h1>
+  <a href="{% url 'shuffle' %}" class="btn btn-primary">Start a game</a>
+  <div class = "cont-wrap">
+      {% for c in cards %}
+      <div class="cont-center {{ c.house }}">
+        <div class="card">
+          <a href="{% url 'viewcard' c.id %}">
+            <img src="{{ c.image }}" class="card-img-top" alt="{{ c.name }}">
+          </a>
+        </div>
+        <div>
+          <span>{{ c.name }}</span>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

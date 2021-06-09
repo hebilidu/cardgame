@@ -9,15 +9,12 @@
 
 <div class="main-hogwarts">
     <h1>FORUM {{ action }}</h1>
-    <div class = "cont-left">
-        {% for p in posts %}
-        <div class = "box">
-            <p>
-                <a href="{% url 'viewpost' p.id %}">{{ p.title }}</a> | by: {{ p.owner }} | published: {{ p.pub_date }} | last edited: {{ p.last_edit_date }} 
-            </p>
-        </div>
-        {% endfor %}
-    </div>  
+    {% for p in posts %}
+    <div class = "box">
+        <a href="{% url 'viewpost' p.id %}">{{ p.title }}</a><br>
+        <span>by: {{ p.owner }} | published: {{ p.pub_date }} | last edited: {{ p.last_edit_date }}</span>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

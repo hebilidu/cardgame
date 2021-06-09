@@ -1,10 +1,23 @@
-{% extends 'partials/base.html'%}
+{% extends 'partials/base.html' %}
+{% load static  %}
+{% load bootstrap %}
 
-{% block content  %}
-<h1>User profile</h1>
-<form method="POST">
-    {% csrf_token  %}
-    {{  form  }}
-    <button>Login</button>
-</form>
+{% block title %}
+Edit profile
+{% endblock %}
+
+{% block content %}
+
+<div class="main-hogwarts">
+    <h1>Edit profile for {{ user.username }}</h1>
+    <div class="cont">
+        <form method="POST" class="containerf col-6" enctype="multipart/form-data">
+            {% csrf_token %}            
+            {{ form|bootstrap }}
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
 {% endblock %}

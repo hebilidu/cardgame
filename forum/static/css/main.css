@@ -7,6 +7,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
+    overflow-y: scroll;
 }
 
 .main-logo {
@@ -32,6 +33,8 @@
     flex-direction: column;
     align-items: center;
     align-content: center;
+    margin: 5px;
+    border-radius: 1em
 }
 
 .cont-left {
@@ -44,8 +47,72 @@
     flex-direction: row;
 }
 
+.cont-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: .9;
+}
 
 .menutop {
     display: flex;
     flex-direction: column;
+}
+
+.card {
+    width: 9rem;
+    height: 11rem; 
+    overflow: hidden;
+    opacity:.9;
+    border: none;
+}
+
+.card-large {
+    width: 20rem;
+    height: 26rem; 
+    overflow: hidden;
+    opacity:.9;
+    border: none;
+    opacity: 1;
+}
+
+.Gryffindor {
+    border: red solid 5px;
+}
+
+.Hufflepuff {
+    border: yellow solid 5px; 
+}
+
+.Ravenclaw {
+    border: blue solid 5px;
+}
+
+.Slytherin {
+    border: green solid 5px;;
+}
+
+.card-img-top {
+    height: 100%;
+}
+
+.box {
+    background-color: rgb(142, 190, 233);
+    border: black solid 5px;
+    opacity: 1;
+}
+
+.info{
+    margin-left: 1em;
+}
+
+table {
+    background-color: darkslateblue;
+    opacity: .8;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+td {
+    padding: 1px;
 }

@@ -34,6 +34,8 @@ class PostDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        post = get_object_or_404(Post, id = self.kwargs.get("pk"))
+        context['comments'] = post.comment_set.all()
         context['action'] = 'View post'
         return context
 
@@ -81,10 +83,13 @@ class PostDeleteView(LoginRequiredMixin, generic.DeleteView):
 class CommentAddView(LoginRequiredMixin, generic.CreateView):
     model = Comment
     fields = '__all__'
-    template_name = 'viewpage.html'
+    template_name = 'editcomment.html'
+    success_url = reverse_lazy('listpost')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post'] = Comment.Post.get()
+        context['post'] = get_object_or_404(Post, id = self.kwargs.get("pk"))
         context['action'] = 'Add comment'
         return context
+
+

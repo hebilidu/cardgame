@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% load static  %}
+
+{% block title %}
+List cards
+{% endblock %}
+
+{% block content %}
+
+<div class="main-hogwarts">
+  <h1>TRADE Card detail</h1>
+  <div class = "cont-wrap">
+    <div class="card-large">
+        <img src="{{ card.image }}" class="card-img-top {{ card.house }}" alt="{{ card.name }}">
+    </div>
+    <div class="info">
+        <h3>{{ card.name }}</h3>
+        <h4>Characteristics:</h4>
+        <table>
+            <tr><td>Species</td><td>{{card.species}}</td></tr>
+            <tr><td>Gender</td><td>{{card.gender}}</td></tr>
+            <tr><td>House</td><td>{{card.house}}</td></tr>
+            <tr><td>Date of birth</td><td>{{card.date_birth}}</td></tr>
+            <tr><td>Ancestry</td><td>{{card.ancestry}}</td></tr>
+            <tr><td>Wand_wood</td><td>{{card.wand_wood}}</td></tr>
+            <tr><td>Wand_core</td><td>{{card.wand_core}}</td></tr>
+            <tr><td>Wand_lengths</td><td>{{card.wand_length}}</td></tr>
+            <tr><td>Patronus</td><td>{{card.patronus}}</td></tr>
+            <tr><td>Hogwarts student ?</td><td>{{card.is_hogwarts_student}}</td></tr>
+            <tr><td>Hogwarts staff member ?</td><td>{{card.is_hogwarts_staff}}</td></tr>
+            <tr><td>Rarity</td><td>{{card.rarity}}</td></tr>
+            <tr><td>Price</td><td>{{card.price}}</td></tr>
+        </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
