@@ -22,7 +22,11 @@
             Creation: {{ object.pub_date }}</button>
         <button type="button" class="btn btn-secondary btn-sm" disabled>
             Last edit: {{ object.last_edit_date }}</button>
+        
+        {% if user.id == object.owner.id %}
         <a href="{% url 'editpost' object.id  %}" class="btn btn-success btn-sm">Edit</a>
+        {% endif %}
+
         {% if action == 'Delete post' %}
         <form method="post">{% csrf_token %}
             <p>Please confirm deletion</p>
@@ -33,14 +37,27 @@
         {% endif %}
     </div>
     <div class="comments">
-        Comments: <a href="{% url 'addcomment' object.id  %}" class="btn btn-success btn-sm">Add one</a>
+        Comments: <a href="{% url 'addcomment' object.id  %}" class="btn btn-success btn-sm" style="font-size: 0.8em;">Add one</a>
         {% for c in comments %}
         <div class="box">
-            <a href="{% url 'viewpost' object.id %}">{{ c.title }}</a><br>
+            <span>{{ c.title }}</span><br>
             <span>{{ c.content }}</span><br>
-            <span>
-                by: {{ c.owner }} | published: {{ c.pub_date }} | last edited: {{ c.last_edit_date }}
-            </span>
+            <div class="cont-but">
+                <button type="button" class="btn btn-secondary btn-sm" disabled>
+                    Owner: {{ c.owner }}</button>
+                <button type="button" class="btn btn-secondary btn-sm" disabled>
+                    Creation: {{ c.pub_date }}</button>
+                <button type="button" class="btn btn-secondary btn-sm" disabled>
+                    Last edit: {{ c.last_edit_date }}</button>
+                
+                {% if user.id == c.owner.id %}
+                <a href="{% url 'editcomment' object.id c.id  %}" class="btn btn-success btn-sm">Edit</a>
+                {% endif %}
+
+                {% if user.is_staff %}
+                <a href="{% url 'deletecomment' object.id c.id %}" class="btn btn-danger btn-sm">Delete</a>
+                {% endif %}
+            </div>
         </div>
         {% endfor %}
     </div>

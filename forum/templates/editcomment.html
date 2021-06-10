@@ -25,12 +25,29 @@
             Last edit: {{ post.last_edit_date }}</button>
     </div>
     <div class="cont">
+        {% if action == 'Delete comment' %}
+        <span>{{ comment.title }}</span><br>
+        <span>{{ comment.content }}</span><br>
+        <div class="cont-but">
+            <button type="button" class="btn btn-secondary btn-sm" disabled>
+                Owner: {{ comment.owner }}</button>
+            <button type="button" class="btn btn-secondary btn-sm" disabled>
+                Creation: {{ comment.pub_date }}</button>
+            <button type="button" class="btn btn-secondary btn-sm" disabled>
+                Last edit: {{ comment.last_edit_date }}</button>
+        </div>
+        <form method="post">{% csrf_token %}
+            <p>Please confirm deletion</p>
+            <input class="btn btn-danger" type="submit" value="Confirm">
+        </form>
+        {% else %}
         <form method="POST" class="containerf col-6" enctype="multipart/form-data">
             {% csrf_token %}            
             {{ form|bootstrap }}
             <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        {% endif%}
     </div>
 </div>
 

@@ -1,3 +1,15 @@
+.button {
+    border: 3px solid green;
+    border-radius: 1em;
+    color: white;
+    background-color: green;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8em;
+    margin: .3em;
+    padding: -2em;
+    cursor: pointer;
+}
 
 .main-hogwarts {
     padding: 1em;
@@ -97,9 +109,13 @@
 }
 
 .box {
-    background-color: rgb(142, 190, 233);
-    border: black solid 5px;
-    opacity: 1;
+    background-color: rgb(51, 75, 95);
+    border-radius: 1em;
+    opacity: .9;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
 }
 
 .info{

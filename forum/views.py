@@ -1,5 +1,5 @@
 from django.views import generic
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -84,7 +84,6 @@ class CommentAddView(LoginRequiredMixin, generic.CreateView):
     model = Comment
     fields = '__all__'
     template_name = 'editcomment.html'
-    success_url = reverse_lazy('listpost')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -92,4 +91,39 @@ class CommentAddView(LoginRequiredMixin, generic.CreateView):
         context['action'] = 'Add comment'
         return context
 
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        return reverse("viewpost", kwargs={"pk": pk})
 
+
+class CommentUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Comment
+    fields = '__all__'
+    template_name = 'editcomment.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = get_object_or_404(Post, id = self.kwargs.get("pk"))
+        context['action'] = 'Edit comment'
+        return context
+
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        return reverse("viewpost", kwargs={"pk": pk})
+
+
+class CommentDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Comment
+    fields = '__all__'
+    template_name = 'editcomment.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = get_object_or_404(Post, id = self.kwargs.get("pk"))
+        context['comment'] = get_object_or_404(Comment, id = self.kwargs.get("c_pk"))
+        context['action'] = 'Delete comment'
+        return context
+
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        return reverse("viewpost", kwargs={"pk": pk})

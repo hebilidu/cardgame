@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 from .models import Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -29,7 +29,8 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form':form})
 
 class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
-    form = Profile
+    # form_class = ProfileForm
+    model = Profile
     fields = '__all__'
     template_name = 'registration/profile.html'
     success_url = reverse_lazy('homepage')
